@@ -1,0 +1,77 @@
+<form class="form-horizontal" role="form">
+
+severity radio buttons
+status buttons
+
+  <div class="form-group">
+    <label for="resource" class="col-sm-2 control-label">Resource</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="resource" ng-model="resource" ng-change="update()" placeholder="eg. web01">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="event" class="col-sm-2 control-label">Event</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="event" ng-model="event" ng-change="update()" placeholder="eg. HttpServerError">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="group" class="col-sm-2 control-label">Group</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="group" ng-model="group" ng-change="update()" placeholder="eg. Web">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="services" class="col-sm-2 control-label">Services</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="services" ng-model="services" ng-change="update()" placeholder="eg. example.com">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="environment" class="col-sm-2 control-label">Environment</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="environment" ng-model="environment" ng-change="update()" placeholder="eg. Production or Development">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="value" class="col-sm-2 control-label">Value</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="value" ng-model="value" ng-change="update()" placeholder="eg. down">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="text" class="col-sm-2 control-label">Text</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="text" ng-model="text" ng-change="update()" placeholder="eg. this is an alert">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="tags" class="col-sm-2 control-label">Tags</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="tags" ng-model="tags" ng-change="update()" placeholder="eg. london,dc1">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="api-key" class="col-sm-2 control-label">API Key</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="api-key" ng-model="apikey" ng-change="update()"  placeholder="eg. PF8ReeqRAsvZzoWFfPSKZo5FyUgkyePVtahvu4mM">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-3">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+</form>
+
+<a href="{{ query }}" target="_blank">{{ query }}</a>
+
+<pre>{{ response | json }}</pre>
+
