@@ -1,77 +1,71 @@
-<form class="form-horizontal" role="form">
-
-severity radio buttons
+<div class="container">
+  <form role="form">
+<h2>Query</h2>
+<p>Query for alerts based on alert attributes</p>
+<p>severity radio buttons
 status buttons
 
-  <div class="form-group">
-    <label for="resource" class="col-sm-2 control-label">Resource</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="resource" ng-model="resource" ng-change="update()" placeholder="eg. web01">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="event" class="col-sm-2 control-label">Event</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="event" ng-model="event" ng-change="update()" placeholder="eg. HttpServerError">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="group" class="col-sm-2 control-label">Group</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="group" ng-model="group" ng-change="update()" placeholder="eg. Web">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="services" class="col-sm-2 control-label">Services</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="services" ng-model="services" ng-change="update()" placeholder="eg. example.com">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="environment" class="col-sm-2 control-label">Environment</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="environment" ng-model="environment" ng-change="update()" placeholder="eg. Production or Development">
-    </div>
-  </div>
+from-data
+id
+repeat
+sort-by
+reverse
+group-by
+limit
+regex / not
 
-  <div class="form-group">
-    <label for="value" class="col-sm-2 control-label">Value</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="value" ng-model="value" ng-change="update()" placeholder="eg. down">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="text" class="col-sm-2 control-label">Text</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="text" ng-model="text" ng-change="update()" placeholder="eg. this is an alert">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="tags" class="col-sm-2 control-label">Tags</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="tags" ng-model="tags" ng-change="update()" placeholder="eg. london,dc1">
-    </div>
-  </div>
+severity
+status
 
-  <div class="form-group">
-    <label for="api-key" class="col-sm-2 control-label">API Key</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="api-key" ng-model="apikey" ng-change="update()"  placeholder="eg. PF8ReeqRAsvZzoWFfPSKZo5FyUgkyePVtahvu4mM">
-    </div>
-  </div>
+environment
+service
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-3">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> Remember me
-        </label>
-      </div>
-    </div>
-  </div>
+resource
+event
+group
+
+value
+text
+tags
+
+attributes
+
+api-key</p>
+<div class="row">
+  <div class="col-xs-3 col-md-2"><label for="input-status">Status</label><input id="input-status" type="text" class="form-control" ng-model="status" ng-change="update()" placeholder="eg. web01"></div>
+  <div class="col-xs-3 col-md-2"><label for="input-severity">Severity</label><input id="input-severity" type="text" class="form-control" ng-model="severity" ng-change="update()" placeholder="eg. web01"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-environment">Environment</label><input id="input-environment" type="text" class="form-control" ng-model="environment" ng-change="update()" placeholder="eg. Production or Development"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-services">Services</label><input id="input-services" type="text" class="form-control" ng-model="services" ng-change="update()" placeholder="eg. Website or Platform"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-6 col-md-4"><label for="input-resource">Resource</label><input id="input-resource" type="text" class="form-control" ng-model="resource" ng-change="update()" placeholder="eg. web01"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-event">Event</label><input id="input-event" type="text" class="form-control" ng-model="event" ng-change="update()" placeholder="eg. HttpServerError"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-foo">Group</label><input id="input-foo" type="text" class="form-control" ng-model="group" ng-change="update()" placeholder="eg. Web"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-6 col-md-4"><label for="input-value">Value</label><input id="input-value" type="text" class="form-control" ng-model="value" ng-change="update()" placeholder="eg. Bad Gateway (501)"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-text">Text</label><input id="input-text" type="text" class="form-control" ng-model="text" ng-change="update()" placeholder="eg. Web server is down."></div>
+  <div class="col-xs-6 col-md-4"><label for="input-tags">Tags</label><input id="input-tags" type="text" class="form-control" ng-model="tags" ng-change="update()" placeholder="eg. london,frontend,dc1"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3 col-md-2"><label for="input-from-date">From Date</label><input id="input-from-date" type="text" class="form-control" ng-model="fromdate" ng-change="update()" placeholder="eg. Bad Gateway (501)"></div>
+  <div class="col-xs-3 col-md-2"><label for="input-limit">Limit</label><input id="input-limit" type="text" class="form-control" ng-model="limit" ng-change="update()" placeholder="10"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-api-key">API Key</label><input id="input-api-key" type="text" class="form-control" ng-model="apikey" ng-change="update()" placeholder="demo-key"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-attributes">Custom Attributes</label><input id="input-attributes" type="text" class="form-control" ng-model="attributes" ng-change="update()" placeholder="eg. key=value,foo=bar"></div>
+</div>
+
 </form>
 
-<a href="{{ query }}" target="_blank">{{ query }}</a>
+<hr>
+<div>
+<h5><a href="{{ query }}" target="_blank">{{ query }}</a></h5>
+</div>
 
+<div>
 <pre>{{ response | json }}</pre>
+</div>
 
+</div>
