@@ -5,8 +5,6 @@
 angular.module('myApp.controllers', [])
   .controller('QueryController', ['$scope', '$http', function($scope, $http) {
 
-    $scope.query = 'http://api.alerta.io/api/alerts?limit=10';
-
     $scope.severity = 'normal';
 
     $scope.resource = '';
@@ -23,11 +21,15 @@ angular.module('myApp.controllers', [])
     //$scope.attributes = '';
 
     $scope.fromdate = '';
+    $scope.limit = 10;
+    $scope.apikey = 'demo-key';
 
-    $scope.apikey = 'PF8ReeqRAsvZzoWFfPSKZo5FyUgkyePVtahvu4mM';
+    $scope.query = 'http://api.alerta.io/api/alerts?limit=' + $scope.limit + '&api-key=' + $scope.apikey;
 
     $scope.update = function() {
-      $scope.query = 'http://api.alerta.io/api/alerts?limit=10';
+
+      $scope.query = 'http://api.alerta.io/api/alerts?limit=' + $scope.limit;
+
       //if ($scope.severity) $scope.query += '&severity=' + $scope.severity;
       if ($scope.resource) $scope.query += '&resource=' + $scope.resource;
       if ($scope.event) $scope.query += '&event=' + $scope.event;
@@ -85,7 +87,7 @@ angular.module('myApp.controllers', [])
     $scope.tags = '';
     $scope.attributes = '';
 
-    $scope.apikey = 'PF8ReeqRAsvZzoWFfPSKZo5FyUgkyePVtahvu4mM';
+    $scope.apikey = 'demo-key';
 
 
     $scope.update = function() {
