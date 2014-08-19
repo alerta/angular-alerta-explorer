@@ -20,7 +20,7 @@ angular.module('explorer.controllers', [])
     $scope.text = '';
     $scope.tags = '';
 
-    $scope.attributes = {};
+    $scope.attributes = '';
     $scope.origin = '';
     $scope.type = '';
 
@@ -60,11 +60,13 @@ angular.module('explorer.controllers', [])
           $scope.query += '&tag=' + value;
         });
       }
-      // if ($scope.attributes) {
-      //   angular.forEach($scope.attributes.split(","), function(value, key) {
-      //     $scope.query += '&service=' + value;
-      //   });
-      // }
+
+      if ($scope.attributes) {
+        angular.forEach($scope.attributes.split(","), function(value, key) {
+          var arr = value.split("=");
+          arr[1] && ($scope.query += '&attributes.' + arr[0] + '=' + arr[1]);
+        });
+      }
 
       if ($scope.origin) $scope.query += '&origin=' + $scope.origin;
       if ($scope.type) $scope.query += '&type=' + $scope.type;
@@ -106,7 +108,7 @@ angular.module('explorer.controllers', [])
     $scope.text = '';
     $scope.tags = '';
 
-    $scope.attributes = {};
+    $scope.attributes = '';
     $scope.origin = navigator.userAgent;
     $scope.type = 'browserAlert';
 
@@ -115,6 +117,12 @@ angular.module('explorer.controllers', [])
     $scope.post = 'http://api.alerta.io/api/alert?api-key=' + $scope.apikey;
 
     $scope.update = function() {
+
+      var attrs = {};
+      angular.forEach($scope.attributes.split(","), function(value, key) {
+        var arr = value.split("=");
+        arr[1] && (attrs[arr[0]] = arr[1]);
+      });
 
       $scope.alert = {
         "resource": $scope.resource,
@@ -128,7 +136,7 @@ angular.module('explorer.controllers', [])
         "value": $scope.value,
         "text": $scope.text,
         "tags": $scope.tags.split(","),  // dont add if empty
-        "attributes": $scope.attributes,  // dont add if empty
+        "attributes": attrs,  // dont add if empty
         "origin": $scope.origin,
         "type": $scope.type
       };
