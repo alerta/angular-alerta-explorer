@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', [])
+angular.module('explorer.controllers', [])
   .controller('QueryController', ['$scope', '$http', function($scope, $http) {
 
     $scope.severity = 'normal';
@@ -68,9 +68,7 @@ angular.module('myApp.controllers', [])
 
   }])
 
-  .controller('SendController', ['$scope', '$http', function($scope, $http) {
-
-    $scope.post = 'http://api.alerta.io/api/alert'
+  .controller('SendController', ['$scope', '$http', 'Alert', function($scope, $http, Alert) {
 
     $scope.severity = 'normal';
 
@@ -85,10 +83,11 @@ angular.module('myApp.controllers', [])
     $scope.text = '';
 
     $scope.tags = '';
-    $scope.attributes = '';
+    $scope.attributes = {};
 
     $scope.apikey = 'demo-key';
 
+    $scope.post = 'http://api.alerta.io/api/alert?api-key=' + $scope.apikey;
 
     $scope.update = function() {
       $scope.alert = {
@@ -108,9 +107,10 @@ angular.module('myApp.controllers', [])
     $scope.send = function() {
 
       console.log('send');
+
       $http.defaults.headers.common.Authorization = 'Key ' + $scope.apikey;
-      $http.post($scope.post, $scope.alert).success(function(data) {
-        // update the textarea
+
+      Alert.save({}, $scope.alert, function(data) {
         $scope.response = data;
       });
     };

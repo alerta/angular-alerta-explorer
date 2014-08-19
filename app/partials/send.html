@@ -1,7 +1,7 @@
 
 <div class="container">
   <form role="form">
-<h2>Send</h2>
+<h2 class="title">Send</h2>
 <p>Create new alert</p>
 
 <div class="row">
@@ -12,8 +12,8 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-6 col-md-4"><label for="input-resource">Resource</label><input id="input-resource" type="text" class="form-control" ng-model="resource" ng-change="update()" placeholder="eg. web01"></div>
-  <div class="col-xs-6 col-md-4"><label for="input-event">Event</label><input id="input-event" type="text" class="form-control" ng-model="event" ng-change="update()" placeholder="eg. HttpServerError"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-resource">Resource</label><input id="input-resource" type="text" class="form-control" ng-model="resource" ng-change="update()" placeholder="eg. web01" required></div>
+  <div class="col-xs-6 col-md-4"><label for="input-event">Event</label><input id="input-event" type="text" class="form-control" ng-model="event" ng-change="update()" placeholder="eg. HttpServerError" required></div>
   <div class="col-xs-6 col-md-4"><label for="input-foo">Group</label><input id="input-foo" type="text" class="form-control" ng-model="group" ng-change="update()" placeholder="eg. Web"></div>
 </div>
 

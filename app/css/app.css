@@ -1,30 +1,18 @@
-/* app css stylesheet */
-
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+@font-face {
+    font-family: "Sonsie One";
+    src: url('../fonts/SonsieOne-Regular.ttf');
 }
 
-.menu:before {
-  content: "[";
+body {
+    padding: 10px !important;
 }
 
-.menu:after {
-  content: "]";
+.navbar-brand.logo {
+    font-family: "Sonsie One";
+    font-size: 26pt;
 }
 
-.menu > li {
-  display: inline;
-}
-
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
+h2.title {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
