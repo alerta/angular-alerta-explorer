@@ -3,45 +3,58 @@
 /* Controllers */
 
 angular.module('explorer.controllers', [])
-  .controller('QueryController', ['$scope', '$http', function($scope, $http) {
 
-    $scope.severity = 'normal';
+  .controller('QueryController', ['$scope', '$http', function($scope, $http) {
 
     $scope.resource = '';
     $scope.event = '';
-    $scope.group = '';
-
-    $scope.services = '';
     $scope.environment = '';
 
+    $scope.severity = '';
+    $scope.status = 'open';
+    $scope.correlate = '';
+    $scope.services = '';
+
+    $scope.group = '';
     $scope.value = '';
     $scope.text = '';
-
     $scope.tags = '';
-    //$scope.attributes = '';
 
-    $scope.fromdate = '';
-    $scope.limit = 10;
+    $scope.attributes = {};
+    $scope.origin = '';
+    $scope.type = '';
+
     $scope.apikey = 'demo-key';
 
-    $scope.query = 'http://api.alerta.io/api/alerts?limit=' + $scope.limit + '&api-key=' + $scope.apikey;
+    $scope.alertid = '';
+    $scope.fromdate = '';
+    $scope.limit = 10;
+    $scope.repeat = '';
+
+    $scope.query = 'http://api.alerta.io/api/alerts?api-key=' + $scope.apikey;
 
     $scope.update = function() {
 
-      $scope.query = 'http://api.alerta.io/api/alerts?limit=' + $scope.limit;
+      $scope.query = 'http://api.alerta.io/api/alerts?';
 
-      //if ($scope.severity) $scope.query += '&severity=' + $scope.severity;
       if ($scope.resource) $scope.query += '&resource=' + $scope.resource;
       if ($scope.event) $scope.query += '&event=' + $scope.event;
-      if ($scope.group) $scope.query += '&group=' + $scope.group;
+      if ($scope.environment) $scope.query += '&environment=' + $scope.environment;
+
+      if ($scope.severity) $scope.query += '&severity=' + $scope.severity;
+      if ($scope.status) $scope.query += '&status=' + $scope.status;
+      if ($scope.correlate) $scope.query += '&correlate=' + $scope.correlate;
+
       if ($scope.services) {
         angular.forEach($scope.services.split(","), function(value, key) {
           $scope.query += '&service=' + value;
         });
       }
-      if ($scope.environment) $scope.query += '&environment=' + $scope.environment;
+
+      if ($scope.group) $scope.query += '&group=' + $scope.group;
       if ($scope.value) $scope.query += '&value=' + $scope.value;
-      if ($scope.text) $scope.query += '&text=' + $scope.text;
+      if ($scope.text) $scope.query += '&text=~' + $scope.text;
+
       if ($scope.tags) {
         angular.forEach($scope.tags.split(","), function(value, key) {
           $scope.query += '&tag=' + value;
@@ -52,8 +65,17 @@ angular.module('explorer.controllers', [])
       //     $scope.query += '&service=' + value;
       //   });
       // }
+
+      if ($scope.origin) $scope.query += '&origin=' + $scope.origin;
+      if ($scope.type) $scope.query += '&type=' + $scope.type;
       if ($scope.apikey) $scope.query += '&api-key=' + $scope.apikey;
-    }
+
+      if ($scope.alertid) $scope.query += '&id=' + $scope.alertid;
+      if ($scope.fromdate) $scope.query += '&from-date=' + $scope.fromdate;
+      if ($scope.limit) $scope.query += '&limit=' + $scope.limit;
+      if ($scope.repeat) $scope.query += '&repeat=' + $scope.repeat;
+
+    };
 
     $scope.$watch('query', function(q) {
 
@@ -70,38 +92,48 @@ angular.module('explorer.controllers', [])
 
   .controller('SendController', ['$scope', '$http', 'Alert', function($scope, $http, Alert) {
 
-    $scope.severity = 'normal';
-
     $scope.resource = '';
     $scope.event = '';
-    $scope.group = '';
-
-    $scope.services = '';
     $scope.environment = '';
 
+    $scope.severity = 'normal';
+    $scope.status = 'open';
+    $scope.correlate = '';
+    $scope.services = '';
+
+    $scope.group = '';
     $scope.value = '';
     $scope.text = '';
-
     $scope.tags = '';
+
     $scope.attributes = {};
+    $scope.origin = navigator.userAgent;
+    $scope.type = 'browserAlert';
 
     $scope.apikey = 'demo-key';
 
     $scope.post = 'http://api.alerta.io/api/alert?api-key=' + $scope.apikey;
 
     $scope.update = function() {
+
       $scope.alert = {
-        "severity": $scope.severity,
-        "environment": $scope.environment,
-        "service": $scope.services.split(","),
         "resource": $scope.resource,
         "event": $scope.event,
+        "environment": $scope.environment,
+        "severity": $scope.severity,
+        "status": $scope.status,
+        "correlate": $scope.correlate.split(","),  // dont add if empty
+        "service": $scope.services.split(","),
         "group": $scope.group,
         "value": $scope.value,
         "text": $scope.text,
-        "tags": $scope.tags.split(","),
-        "attributes": $scope.attributes
+        "tags": $scope.tags.split(","),  // dont add if empty
+        "attributes": $scope.attributes,  // dont add if empty
+        "origin": $scope.origin,
+        "type": $scope.type
       };
+
+      $scope.post = 'http://api.alerta.io/api/alert?api-key=' + $scope.apikey;
     };
 
     $scope.send = function() {
