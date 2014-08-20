@@ -11,7 +11,7 @@ angular.module('explorer.controllers', [])
     $scope.environment = '';
 
     $scope.severity = '';
-    $scope.status = 'open';
+    $scope.status = '';
     $scope.correlate = '';
     $scope.services = '';
 
@@ -31,11 +31,15 @@ angular.module('explorer.controllers', [])
     $scope.limit = 10;
     $scope.repeat = '';
 
-    $scope.query = 'http://api.alerta.io/api/alerts?api-key=' + $scope.apikey;
+    $scope.trend = '';
+    $scope.previous = '';
+    $scope.duplcount = '';
+
+    $scope.query = 'http://localhost:8080/api/alerts?limit=' + $scope.limit + '&api-key=' + $scope.apikey;
 
     $scope.update = function() {
 
-      $scope.query = 'http://api.alerta.io/api/alerts?';
+      $scope.query = 'http://localhost:8080/api/alerts?limit=' + $scope.limit;
 
       if ($scope.resource) $scope.query += '&resource=' + $scope.resource;
       if ($scope.event) $scope.query += '&event=' + $scope.event;
@@ -73,9 +77,11 @@ angular.module('explorer.controllers', [])
 
       if ($scope.alertid) $scope.query += '&id=' + $scope.alertid;
       if ($scope.fromdate) $scope.query += '&from-date=' + $scope.fromdate;
-      if ($scope.limit) $scope.query += '&limit=' + $scope.limit;
       if ($scope.repeat) $scope.query += '&repeat=' + $scope.repeat;
 
+      if ($scope.trend) $scope.query += '&trendIndication=' + $scope.trend;
+      if ($scope.previous) $scope.query += '&previousSeverity=' + $scope.previous;
+      if ($scope.duplcount) $scope.query += '&duplicateCount=' + $scope.duplcount;
     };
 
     $scope.$watch('query', function(q) {
