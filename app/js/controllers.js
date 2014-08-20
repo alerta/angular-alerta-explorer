@@ -60,7 +60,6 @@ angular.module('explorer.controllers', [])
           $scope.query += '&tag=' + value;
         });
       }
-
       if ($scope.attributes) {
         angular.forEach($scope.attributes.split(","), function(value, key) {
           var arr = value.split("=");
@@ -80,11 +79,7 @@ angular.module('explorer.controllers', [])
     };
 
     $scope.$watch('query', function(q) {
-
-      console.log('trigger');
-
       $http.get(q).success(function(data) {
-        // update the textarea
         $scope.response = data;
       });
 
@@ -130,13 +125,13 @@ angular.module('explorer.controllers', [])
         "environment": $scope.environment,
         "severity": $scope.severity,
         "status": $scope.status,
-        "correlate": $scope.correlate.split(","),  // dont add if empty
-        "service": $scope.services.split(","),
+        "correlate": $scope.correlate.split(",").filter(function(v){return v!==''}),
+        "service": $scope.services.split(",").filter(function(v){return v!==''}),
         "group": $scope.group,
         "value": $scope.value,
         "text": $scope.text,
-        "tags": $scope.tags.split(","),  // dont add if empty
-        "attributes": attrs,  // dont add if empty
+        "tags": $scope.tags.split(",").filter(function(v){return v!==''}),
+        "attributes": attrs,
         "origin": $scope.origin,
         "type": $scope.type
       };
@@ -145,8 +140,6 @@ angular.module('explorer.controllers', [])
     };
 
     $scope.send = function() {
-
-      console.log('send');
 
       $http.defaults.headers.common.Authorization = 'Key ' + $scope.apikey;
 
