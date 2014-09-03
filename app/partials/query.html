@@ -8,17 +8,17 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-3 col-md-2"><label for="input-severity">Severity</label><input id="input-severity" type="text" class="form-control" ng-model="severity" ng-change="update()" placeholder="eg. ~critical|major"></div>
-  <div class="col-xs-3 col-md-2"><label for="input-status">Status</label><input id="input-status" type="text" class="form-control" ng-model="status" ng-change="update()" placeholder="eg. open, ack or closed"></div>
-  <div class="col-xs-6 col-md-4"><label for="input-severity">Correlate</label><input id="input-correlate" type="text" class="form-control" ng-model="correlate" ng-change="update()" placeholder="eg. NodeUp,NodeDown,NodeThing"></div>
-  <div class="col-xs-6 col-md-4"><label for="input-services">Services</label><input id="input-services" type="text" class="form-control" ng-model="services" ng-change="update()" placeholder="eg. Website or Platform"></div>
+  <div class="col-xs-3 col-md-2"><label for="input-severity">Severity</label><input id="input-severity" type="text" class="form-control" ng-model="severity" ng-change="update()" placeholder="eg. ~critical|major"><p class="help-block">critical, major, minor, warning</p></div>
+  <div class="col-xs-3 col-md-2"><label for="input-status">Status</label><input id="input-status" type="text" class="form-control" ng-model="status" ng-change="update()" placeholder="eg. open"><p class="help-block">open (default), ack or closed</p></div>
+  <div class="col-xs-6 col-md-4"><label for="input-severity">Correlate</label><input id="input-correlate" type="text" class="form-control" ng-model="correlate" ng-change="update()" placeholder="eg. NodeUp,NodeDown,NodeThing"><p class="help-block">Comma-separated list of events</p></div>
+  <div class="col-xs-6 col-md-4"><label for="input-services">Services</label><input id="input-services" type="text" class="form-control" ng-model="services" ng-change="update()" placeholder="eg. Website or Platform"><p class="help-block">Comma-separated list of services</p></div>
 </div>
 
 <div class="row">
   <div class="col-xs-3 col-md-2"><label for="input-value">Group</label><input id="input-group" type="text" class="form-control" ng-model="group" ng-change="update()" placeholder="eg. Web"></div>
   <div class="col-xs-3 col-md-2"><label for="input-value">Value</label><input id="input-value" type="text" class="form-control" ng-model="value" ng-change="update()" placeholder="eg. 100% or 5ms"></div>
-  <div class="col-xs-6 col-md-4"><label for="input-text">Text</label><input id="input-text" type="search" class="form-control" ng-model="text" ng-change="update()"></div>
-  <div class="col-xs-6 col-md-4"><label for="input-tags">Tags</label><input id="input-tags" type="text" class="form-control" ng-model="tags" ng-change="update()" placeholder="eg. london,frontend,dc1"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-text">Text</label><input id="input-text" type="search" class="form-control" ng-model="text" ng-change="update()"><p class="help-block">Regex match is enabled</p></div>
+  <div class="col-xs-6 col-md-4"><label for="input-tags">Tags</label><input id="input-tags" type="text" class="form-control" ng-model="tags" ng-change="update()" placeholder="eg. london,frontend,dc1"><p class="help-block">Comma-separated list of tags</p></div>
 </div>
 
 <div class="row">
