@@ -4,7 +4,7 @@
 
 angular.module('explorer.controllers', [])
 
-  .controller('QueryController', ['$scope', '$http', function($scope, $http) {
+  .controller('QueryController', ['$scope', '$http', 'config', function($scope, $http, config) {
 
     $scope.resource = '';
     $scope.event = '';
@@ -35,11 +35,11 @@ angular.module('explorer.controllers', [])
     $scope.previous = '';
     $scope.duplcount = '';
 
-    $scope.query = 'http://localhost:8080/api/alerts?limit=' + $scope.limit + '&api-key=' + $scope.apikey;
+    $scope.query = config.endpoint + '/api/alerts?limit=' + $scope.limit + '&api-key=' + $scope.apikey;
 
     $scope.update = function() {
 
-      $scope.query = 'http://localhost:8080/api/alerts?limit=' + $scope.limit;
+      $scope.query = config.endpoint + '/api/alerts?limit=' + $scope.limit;
 
       if ($scope.resource) $scope.query += '&resource=' + $scope.resource;
       if ($scope.event) $scope.query += '&event=' + $scope.event;
@@ -93,7 +93,7 @@ angular.module('explorer.controllers', [])
 
   }])
 
-  .controller('SendController', ['$scope', '$http', 'Alert', function($scope, $http, Alert) {
+  .controller('SendController', ['$scope', '$http', 'config', function($scope, $http, config) {
 
     $scope.resource = '';
     $scope.event = '';
@@ -115,7 +115,7 @@ angular.module('explorer.controllers', [])
 
     $scope.apikey = 'demo-key';
 
-    $scope.post = 'http://api.alerta.io/api/alert?api-key=' + $scope.apikey;
+    $scope.post = config.endpoint + '/api/alert?api-key=' + $scope.apikey;
 
     $scope.update = function() {
 
@@ -142,14 +142,14 @@ angular.module('explorer.controllers', [])
         "type": $scope.type
       };
 
-      $scope.post = 'http://api.alerta.io/api/alert?api-key=' + $scope.apikey;
+      $scope.post = config.endpoint + '/api/alert?api-key=' + $scope.apikey;
     };
 
     $scope.send = function() {
 
       $http.defaults.headers.common.Authorization = 'Key ' + $scope.apikey;
 
-      Alert.save({}, $scope.alert, function(data) {
+      $http.post($scope.post, $scope.alert).success(function(data) {
         $scope.response = data;
       });
     };
