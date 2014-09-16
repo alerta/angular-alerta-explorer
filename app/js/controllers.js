@@ -85,10 +85,14 @@ angular.module('explorer.controllers', [])
     };
 
     $scope.$watch('query', function(q) {
-      $http.get(q).success(function(data) {
-        $scope.response = data;
-      });
-
+      $http.get(q).
+        then(function(response) {
+          $scope.response = response.data;
+          $scope.statusText = response.statusText + ' (' + response.status + ')';
+        }, function(response) {
+          $scope.response = response.data;
+          $scope.statusText = response.statusText + ' (' + response.status + ')';
+        });
     });
 
   }])
@@ -149,9 +153,14 @@ angular.module('explorer.controllers', [])
 
       $http.defaults.headers.common.Authorization = 'Key ' + $scope.apikey;
 
-      $http.post($scope.post, $scope.alert).success(function(data) {
-        $scope.response = data;
-      });
+      $http.post($scope.post, $scope.alert).
+        then(function(response) {
+          $scope.response = response.data;
+          $scope.statusText = response.statusText + ' (' + response.status + ')';
+        }, function(response) {
+          $scope.response = response.data;
+          $scope.statusText = response.statusText + ' (' + response.status + ')';
+        });
     };
 
   }]);
