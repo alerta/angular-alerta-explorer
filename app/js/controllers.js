@@ -35,11 +35,11 @@ angular.module('explorer.controllers', [])
     $scope.previous = '';
     $scope.duplcount = '';
 
-    $scope.query = config.endpoint + '/api/alerts?limit=' + $scope.limit + '&api-key=' + $scope.apikey;
+    $scope.query = config.endpoint + '/alerts?limit=' + $scope.limit + '&api-key=' + $scope.apikey;
 
     $scope.update = function() {
 
-      $scope.query = config.endpoint + '/api/alerts?limit=' + $scope.limit;
+      $scope.query = config.endpoint + '/alerts?limit=' + $scope.limit;
 
       if ($scope.resource) $scope.query += '&resource=' + $scope.resource;
       if ($scope.event) $scope.query += '&event=' + $scope.event;
@@ -119,7 +119,7 @@ angular.module('explorer.controllers', [])
 
     $scope.apikey = 'demo-key';
 
-    $scope.post = config.endpoint + '/api/alert?api-key=' + $scope.apikey;
+    $scope.post = config.endpoint + '/alert?api-key=' + $scope.apikey;
 
     $scope.update = function() {
 
@@ -146,7 +146,7 @@ angular.module('explorer.controllers', [])
         "type": $scope.type
       };
 
-      $scope.post = config.endpoint + '/api/alert?api-key=' + $scope.apikey;
+      $scope.post = config.endpoint + '/alert?api-key=' + $scope.apikey;
     };
 
     $scope.send = function() {
