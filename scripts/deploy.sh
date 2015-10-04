@@ -25,7 +25,7 @@ pushd ../app > /dev/null
 echo "# Copy to S3: LOCAL -> s3://${DOMAIN} ..."
 
 aws s3 mb s3://${DOMAIN}
-aws s3 sync . s3://${DOMAIN} --recursive --acl public-read
+aws s3 sync . s3://${DOMAIN} --acl public-read
 aws s3 website s3://${DOMAIN} --index-document index.html
 
 ##### APP CONFIG #####

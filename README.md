@@ -1,7 +1,7 @@
 Alerta API Explorer
 ===================
 
-Explore the Alerta API using a convient web UI.
+Explore the Alerta API using a convenient web UI.
 
 Query for alerts
 ----------------
