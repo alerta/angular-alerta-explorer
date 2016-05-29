@@ -4,6 +4,13 @@
 
 angular.module('explorer.controllers', [])
 
+  .controller('MenuController', ['$scope', '$location', function($scope, $location) {
+
+    $scope.isActive = function (viewLocation) {
+        return viewLocation === $location.path();
+    };
+  }])
+
   .controller('QueryController', ['$scope', '$http', 'config', function($scope, $http, config) {
 
     $scope.resource = '';
