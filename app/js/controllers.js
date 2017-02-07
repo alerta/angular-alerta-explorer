@@ -83,7 +83,7 @@ angular.module('explorer.controllers', [])
       if ($scope.apikey) $scope.query += '&api-key=' + $scope.apikey;
 
       if ($scope.alertid) $scope.query += '&id=' + $scope.alertid;
-      if ($scope.fromdate) $scope.query += '&from-date=' + $scope.fromdate;
+      if ($scope.fromdate) $scope.query += '&from-date=' + $scope.fromdate + ':00.000Z';
       if ($scope.repeat) $scope.query += '&repeat=' + $scope.repeat;
 
       if ($scope.trend) $scope.query += '&trendIndication=' + $scope.trend;
