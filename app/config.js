@@ -2,5 +2,5 @@
 
 angular.module('config', [])
   .constant('config', {
-    'endpoint'    : "http://"+window.location.hostname+":8080"
+    'endpoint': "http://"+window.location.hostname+":8080"
   });

@@ -31,7 +31,7 @@ angular.module('explorer.controllers', [])
     $scope.origin = '';
     $scope.type = '';
 
-    $scope.apikey = 'demo-key';
+    $scope.apikey = config.key || 'demo-key';
 
     $scope.alertid = '';
     $scope.fromdate = '';
@@ -95,10 +95,10 @@ angular.module('explorer.controllers', [])
       $http.get(q).
         then(function(response) {
           $scope.response = response.data;
-          $scope.statusText = response.statusText + ' (' + response.status + ')';
+          $scope.statusText = response.data.status + ' (' + response.status + ')';
         }, function(response) {
           $scope.response = response.data;
-          $scope.statusText = response.statusText + ' (' + response.status + ')';
+          $scope.statusText = response.data.message + ' (' + response.status + ')';
         });
     });
 
@@ -124,7 +124,7 @@ angular.module('explorer.controllers', [])
     $scope.origin = navigator.userAgent;
     $scope.type = 'browserAlert';
 
-    $scope.apikey = 'demo-key';
+    $scope.apikey = config.key || 'demo-key';
 
     $scope.post = config.endpoint + '/alert?api-key=' + $scope.apikey;
 
@@ -159,14 +159,15 @@ angular.module('explorer.controllers', [])
     $scope.send = function() {
 
       $http.defaults.headers.common.Authorization = 'Key ' + $scope.apikey;
+      $http.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
 
       $http.post($scope.post, $scope.alert).
         then(function(response) {
           $scope.response = response.data;
-          $scope.statusText = response.statusText + ' (' + response.status + ')';
+          $scope.statusText = response.data.status + ' (' + response.status + ')';
         }, function(response) {
           $scope.response = response.data;
-          $scope.statusText = response.statusText + ' (' + response.status + ')';
+          $scope.statusText = response.data.message + ' (' + response.status + ')';
         });
     };
 

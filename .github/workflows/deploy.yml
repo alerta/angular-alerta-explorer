@@ -1,0 +1,41 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+      - 'release/**'
+  pull_request:
+    branches:
+      - master
+      - 'release/**'
+
+env:
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          echo explorer.alerta.io >./app/CNAME
+          cat >./app/config.js << EOF
+          'use strict';
+          angular.module('config', [])
+            .constant('config', {
+              'endpoint': "https://alerta-api.fly.dev",
+              'key': 'tQw6PGFKirWz5WtCZvI-CiHdVBLstnwPVLasFjMH',
+            });
+          EOF
+      - name: Deploy
+        id: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./app
+      - uses: act10ns/slack@v2
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
