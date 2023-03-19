@@ -1,0 +1,53 @@
+
+<div class="container">
+  <form role="form">
+
+<div class="row">
+  <div class="col-xs-6 col-md-4"><label for="input-resource">Resource</label><input id="input-resource" type="text" class="form-control" ng-model="resource" ng-change="update()" placeholder="eg. web01" required></div>
+  <div class="col-xs-6 col-md-4"><label for="input-event">Event</label><input id="input-event" type="text" class="form-control" ng-model="event" ng-change="update()" placeholder="eg. HttpServerError" required></div>
+  <div class="col-xs-6 col-md-4"><label for="input-environment">Environment</label><input id="input-environment" type="text" class="form-control" ng-model="environment" ng-change="update()" placeholder="eg. Production or Development"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3 col-md-2"><label for="input-severity">Severity</label><input id="input-severity" type="text" class="form-control" ng-model="severity" ng-change="update()" placeholder="eg. critical"></div>
+  <div class="col-xs-3 col-md-2"><label for="input-status">Status</label><input id="input-status" type="text" class="form-control" ng-model="status" ng-change="update()" placeholder="eg. open"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-severity">Correlate</label><input id="input-correlate" type="text" class="form-control" ng-model="correlate" ng-change="update()" placeholder="eg. NodeUp,NodeDown,NodeMarginal"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-services">Services</label><input id="input-services" type="text" class="form-control" ng-model="services" ng-change="update()" placeholder="eg. Website or Platform"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3 col-md-2"><label for="input-group">Group</label><input id="input-group" type="text" class="form-control" ng-model="group" ng-change="update()" placeholder="eg. Web"></div>
+  <div class="col-xs-3 col-md-2"><label for="input-value">Value</label><input id="input-value" type="text" class="form-control" ng-model="value" ng-change="update()" placeholder="eg. Bad Gateway (501)"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-text">Text</label><input id="input-text" type="text" class="form-control" ng-model="text" ng-change="update()" placeholder="eg. Web server is down."></div>
+  <div class="col-xs-6 col-md-4"><label for="input-tags">Tags</label><input id="input-tags" type="text" class="form-control" ng-model="tags" ng-change="update()" placeholder="eg. london,frontend,dc1"></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-6 col-md-4"><label for="input-attributes">Custom Attributes</label><input id="input-attributes" type="text" class="form-control" ng-model="attributes" ng-change="update()" placeholder="eg. key=value,foo=bar"></div>
+  <div class="col-xs-3 col-md-2"><label for="input-origin">Origin</label><input id="input-origin" type="text" class="form-control" ng-model="origin" ng-change="update()"></div>
+  <div class="col-xs-3 col-md-2"><label for="input-type">Type</label><input id="input-type" type="text" class="form-control" ng-model="type" ng-change="update()"></div>
+  <div class="col-xs-6 col-md-4"><label for="input-api-key">API Key</label><input id="input-api-key" type="text" class="form-control" ng-model="apikey" ng-change="update()" placeholder="demo-key"></div>
+</div>
+
+<p></p>
+<div>
+<button type="submit" id="btn-send" class="btn btn-primary btn-block btn-lg btn-outline" ng-click="send();">Create new alert</button>
+</div>
+
+</form>
+
+<hr>
+<div>
+<h5><a href="{{ post }}" target="_blank">{{ post }}</a></h5>
+</div>
+
+<div>
+  <pre>{{ alert | json }}</pre>
+</div>
+
+<div>
+  <pre>{{ statusText }}</pre>
+  <pre>{{ response | json }}</pre>
+</div>
+
+</div>

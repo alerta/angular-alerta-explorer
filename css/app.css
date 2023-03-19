@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "Sonsie One";
+    src: url('../fonts/SonsieOne-Regular.ttf');
+}
+
+body {
+    padding: 10px !important;
+}
+
+.navbar-brand.logo {
+    font-family: "Sonsie One";
+    font-size: 26pt;
+}
+
+.help-block {
+  font-size: 12px;
+  color: #737373;
+}
