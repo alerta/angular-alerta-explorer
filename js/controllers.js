@@ -159,7 +159,7 @@ angular.module('explorer.controllers', [])
     $scope.send = function() {
 
       $http.defaults.headers.common.Authorization = 'Key ' + $scope.apikey;
-      $http.defaults.headers.common.['Content-Type'] = 'application/json; charset=utf-8';
+      $http.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
 
       $http.post($scope.post, $scope.alert).
         then(function(response) {
