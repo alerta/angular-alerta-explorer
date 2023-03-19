@@ -124,7 +124,7 @@ angular.module('explorer.controllers', [])
     $scope.origin = navigator.userAgent;
     $scope.type = 'browserAlert';
 
-    $scope.apikey = 'demo-key';
+    $scope.apikey = config.key || 'demo-key';
 
     $scope.post = config.endpoint + '/alert?api-key=' + $scope.apikey;
 
@@ -159,7 +159,7 @@ angular.module('explorer.controllers', [])
     $scope.send = function() {
 
       $http.defaults.headers.common.Authorization = 'Key ' + $scope.apikey;
-      $http.defaults.headers.common.['Content-Type'] = 'application/json';
+      $http.defaults.headers.common.['Content-Type'] = 'application/json; charset=utf-8';
 
       $http.post($scope.post, $scope.alert).
         then(function(response) {
