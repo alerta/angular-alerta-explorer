@@ -95,10 +95,10 @@ angular.module('explorer.controllers', [])
       $http.get(q).
         then(function(response) {
           $scope.response = response.data;
-          $scope.statusText = response.statusText + ' (' + response.status + ')';
+          $scope.statusText = response.data.status + ' (' + response.status + ')';
         }, function(response) {
           $scope.response = response.data;
-          $scope.statusText = response.statusText + ' (' + response.status + ')';
+          $scope.statusText = response.data.message + ' (' + response.status + ')';
         });
     });
 
@@ -159,6 +159,7 @@ angular.module('explorer.controllers', [])
     $scope.send = function() {
 
       $http.defaults.headers.common.Authorization = 'Key ' + $scope.apikey;
+      $http.defaults.headers.common.['Content-Type'] = 'application/json';
 
       $http.post($scope.post, $scope.alert).
         then(function(response) {
