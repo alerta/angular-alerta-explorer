@@ -163,10 +163,10 @@ angular.module('explorer.controllers', [])
       $http.post($scope.post, $scope.alert).
         then(function(response) {
           $scope.response = response.data;
-          $scope.statusText = response.statusText + ' (' + response.status + ')';
+          $scope.statusText = response.data.status + ' (' + response.status + ')';
         }, function(response) {
           $scope.response = response.data;
-          $scope.statusText = response.statusText + ' (' + response.status + ')';
+          $scope.statusText = response.data.message + ' (' + response.status + ')';
         });
     };
 
