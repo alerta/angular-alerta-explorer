@@ -1,5 +1,5 @@
 'use strict';
 angular.module('config', [])
   .constant('config', {
-    'endpoint': "https://alerta-api.fly.io",
+    'endpoint': "https://alerta-api.fly.dev",
   });
