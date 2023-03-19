@@ -29,6 +29,7 @@ jobs:
               'key': 'tQw6PGFKirWz5WtCZvI-CiHdVBLstnwPVLasFjMH',
             });
           EOF
+          sed -i 's/@@TRACKING_ID/UA-44644195-4/' ./app/index.html
       - name: Deploy
         id: deploy
         uses: peaceiris/actions-gh-pages@v3
