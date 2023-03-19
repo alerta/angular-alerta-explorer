@@ -31,7 +31,7 @@ angular.module('explorer.controllers', [])
     $scope.origin = '';
     $scope.type = '';
 
-    $scope.apikey = config.key | 'demo-key';
+    $scope.apikey = config.key || 'demo-key';
 
     $scope.alertid = '';
     $scope.fromdate = '';
