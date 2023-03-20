@@ -1,25 +1,22 @@
-name: Deploy
+name: Release
 
 on:
   push:
-    branches:
-      - master
-      - 'release/**'
-  pull_request:
-    branches:
-      - master
-      - 'release/**'
+    tags: [ 'v*' ]
 
 env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:
-  deploy:
+  release:
+    name: Publish
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      - run: |
+      - name: Config
+        id: config
+        run: |
           echo explorer.alerta.io >./app/CNAME
           cat >./app/config.js << EOF
           'use strict';
